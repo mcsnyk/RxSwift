@@ -30,8 +30,9 @@ jobs:
     - run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
     - name: Snyk Open Source Scanning
-      #run: snyk test --org=6391f850-81f8-48fc-9cd4-aa8c186c6ff0 --all-projects --sarif-file-output=snyk-oss.sarif
-      run: snyk monitor --org=6391f850-81f8-48fc-9cd4-aa8c186c6ff0 --all-projects
+      run: snyk test --org=6391f850-81f8-48fc-9cd4-aa8c186c6ff0 --all-projects --strict-out-of-sync=true 
+# --sarif-file-output=snyk-oss.sarif
+#       run: snyk monitor --org=6391f850-81f8-48fc-9cd4-aa8c186c6ff0 --all-projects
       continue-on-error: true
 
     - name: Snyk-native scanner 
