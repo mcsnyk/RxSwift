@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
 
     - name: Use Node.js for installing Snyk 
       uses: actions/setup-node@v2
@@ -30,9 +30,10 @@ jobs:
     - run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
     - name: Snyk Open Source Scanning
-      run: snyk test --org=${{ secrets.SNYK_ORG }} --all-projects --sarif-file-output=snyk-oss.sarif
+      run: snyk test --org=6391f850-81f8-48fc-9cd4-aa8c186c6ff0 --all-projects --sarif-file-output=snyk-oss.sarif
       continue-on-error: true
-    - name: Upload results to GitHub Open Source Scanning
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: snyk-oss.sarif
+      
+#     - name: Upload results to GitHub Open Source Scanning
+#       uses: github/codeql-action/upload-sarif@v1
+#       with:
+#         sarif_file: snyk-oss.sarif
